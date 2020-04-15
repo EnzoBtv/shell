@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/user"
+	"regexp"
 )
 
 func main() {
@@ -17,7 +19,23 @@ func main() {
 			log.Fatalln(err)
 		}
 
-		fmt.Print(currentDir + "> ")
+		hostname, err := os.Hostname()
+
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		user, err := user.Current()
+
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		nameRegexp := regexp.MustCompile("[ ]")
+
+		userName := nameRegexp.ReplaceAllString(user.Name, "")
+
+		fmt.Print(hostname + "@" + userName + " " + currentDir + "> ")
 
 		input, err := reader.ReadString('\n')
 
