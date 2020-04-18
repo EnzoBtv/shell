@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"reflect"
@@ -6,7 +6,8 @@ import (
 
 type mapf func(interface{}, int) interface{}
 
-func mapArray(arr interface{}, function mapf) []interface{} {
+// MapArray receives an array of any type and a function and returns another array with the modifications returned in the function
+func MapArray(arr interface{}, function mapf) []interface{} {
 	in := reflect.ValueOf(arr)
 	out := make([]interface{}, in.Len())
 
