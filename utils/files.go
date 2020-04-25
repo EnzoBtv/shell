@@ -31,7 +31,7 @@ func GetDotFilePath(dotFileName string) (string, error) {
 
 // OpenFile opens a file if it exists, else creates one
 func OpenFile(filePath string) (*os.File, error) {
-	f, err := os.OpenFile(filePath, os.O_APPEND|os.O_WRONLY, 0755)
+	f, err := os.OpenFile(filePath, os.O_RDWR|os.O_APPEND, 0660)
 	if err != nil {
 		if !os.IsNotExist(err) {
 			return nil, errors.New("It was not possible to access the dotfile")
@@ -40,6 +40,7 @@ func OpenFile(filePath string) (*os.File, error) {
 		if err != nil {
 			return nil, errors.New("It was not possible to create the file")
 		}
+
 	}
 
 	return f, nil
