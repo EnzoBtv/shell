@@ -18,6 +18,8 @@ func execInput(input string) (bool, error) {
 		return commands.Cd(args)
 	case "ls":
 		return commands.Ls()
+	case "gitcontrib":
+		return commands.Gitcontrib(args)
 	case "exit":
 		os.Exit(0)
 	}
