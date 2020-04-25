@@ -99,7 +99,10 @@ func Gitcontrib(args []string) (bool, error) {
 			return false, err
 		}
 
-		addSliceElementsToFile(filePath, repos)
+		ok, err := addSliceElementsToFile(filePath, repos)
+		if !ok {
+			return false, err
+		}
 	}
 	return true, nil
 }
